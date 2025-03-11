@@ -45,7 +45,7 @@ int main (int argc, char *argv[])
     printf("Connected with server successfully\n");
     printf("--------------------------------------------------------\n\n");
     
-    // *NEW* loop until the process temps are stable
+    // NEW
     while(1) {
    
         // Package to the sent to server 
@@ -63,14 +63,14 @@ int main (int argc, char *argv[])
             return -1;
         }
     
-        // *NEW* recalculate the ecternal temp based on recieved central temp
+        // NEW
         centralTemp = the_message.T;
         printf("Received central temperature: %f\n", centralTemp);
 
         externalTemp = (3 * externalTemp + 2 * centralTemp) / 5;
         printf("Updated external temperature: %f\n", externalTemp);
 
-        // *NEW* if the central process measures all stable temps, exit the loop
+        // NEW
         if(the_message.Index == -1) {  // Exit
             printf("System Stabalized. Temperature: %f\n", externalTemp);
 	    break;
